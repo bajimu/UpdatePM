@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitfcdd3f256dd8c101f9aaa85e82d6fe7c
+class ComposerStaticInit42c26816750ee57d4016218fb9cda846
 {
     public static $prefixLengthsPsr4 = array (
         'r' => 
@@ -840,7 +840,6 @@ class ComposerStaticInitfcdd3f256dd8c101f9aaa85e82d6fe7c
         'pocketmine\\network\\mcpe\\VerifyLoginTask' => __DIR__ . '/../..' . '/src/pocketmine/network/mcpe/VerifyLoginTask.php',
         'pocketmine\\network\\mcpe\\protocol\\AddBehaviorTreePacket' => __DIR__ . '/../..' . '/src/pocketmine/network/mcpe/protocol/AddBehaviorTreePacket.php',
         'pocketmine\\network\\mcpe\\protocol\\AddEntityPacket' => __DIR__ . '/../..' . '/src/pocketmine/network/mcpe/protocol/AddEntityPacket.php',
-        'pocketmine\\network\\mcpe\\protocol\\AddHangingEntityPacket' => __DIR__ . '/../..' . '/src/pocketmine/network/mcpe/protocol/AddHangingEntityPacket.php',
         'pocketmine\\network\\mcpe\\protocol\\AddItemEntityPacket' => __DIR__ . '/../..' . '/src/pocketmine/network/mcpe/protocol/AddItemEntityPacket.php',
         'pocketmine\\network\\mcpe\\protocol\\AddPaintingPacket' => __DIR__ . '/../..' . '/src/pocketmine/network/mcpe/protocol/AddPaintingPacket.php',
         'pocketmine\\network\\mcpe\\protocol\\AddPlayerPacket' => __DIR__ . '/../..' . '/src/pocketmine/network/mcpe/protocol/AddPlayerPacket.php',
@@ -888,6 +887,7 @@ class ComposerStaticInitfcdd3f256dd8c101f9aaa85e82d6fe7c
         'pocketmine\\network\\mcpe\\protocol\\LevelEventPacket' => __DIR__ . '/../..' . '/src/pocketmine/network/mcpe/protocol/LevelEventPacket.php',
         'pocketmine\\network\\mcpe\\protocol\\LevelSoundEventPacket' => __DIR__ . '/../..' . '/src/pocketmine/network/mcpe/protocol/LevelSoundEventPacket.php',
         'pocketmine\\network\\mcpe\\protocol\\LevelSoundEventPacketV1' => __DIR__ . '/../..' . '/src/pocketmine/network/mcpe/protocol/LevelSoundEventPacketV1.php',
+        'pocketmine\\network\\mcpe\\protocol\\LevelSoundEventPacketV2' => __DIR__ . '/../..' . '/src/pocketmine/network/mcpe/protocol/LevelSoundEventPacketV2.php',
         'pocketmine\\network\\mcpe\\protocol\\LoginPacket' => __DIR__ . '/../..' . '/src/pocketmine/network/mcpe/protocol/LoginPacket.php',
         'pocketmine\\network\\mcpe\\protocol\\MapInfoRequestPacket' => __DIR__ . '/../..' . '/src/pocketmine/network/mcpe/protocol/MapInfoRequestPacket.php',
         'pocketmine\\network\\mcpe\\protocol\\MobArmorEquipmentPacket' => __DIR__ . '/../..' . '/src/pocketmine/network/mcpe/protocol/MobArmorEquipmentPacket.php',
@@ -1104,10 +1104,10 @@ class ComposerStaticInitfcdd3f256dd8c101f9aaa85e82d6fe7c
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitfcdd3f256dd8c101f9aaa85e82d6fe7c::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitfcdd3f256dd8c101f9aaa85e82d6fe7c::$prefixDirsPsr4;
-            $loader->fallbackDirsPsr4 = ComposerStaticInitfcdd3f256dd8c101f9aaa85e82d6fe7c::$fallbackDirsPsr4;
-            $loader->classMap = ComposerStaticInitfcdd3f256dd8c101f9aaa85e82d6fe7c::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit42c26816750ee57d4016218fb9cda846::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit42c26816750ee57d4016218fb9cda846::$prefixDirsPsr4;
+            $loader->fallbackDirsPsr4 = ComposerStaticInit42c26816750ee57d4016218fb9cda846::$fallbackDirsPsr4;
+            $loader->classMap = ComposerStaticInit42c26816750ee57d4016218fb9cda846::$classMap;
 
         }, null, ClassLoader::class);
     }

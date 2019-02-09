@@ -32,13 +32,17 @@ class NetworkStackLatencyPacket extends DataPacket{
 
 	/** @var int */
 	public $timestamp;
+	/** @var bool */
+	public $needResponse;
 
 	protected function decodePayload(){
 		$this->timestamp = (Binary::readLLong($this->get(8)));
+		$this->needResponse = (($this->get(1) !== "\x00"));
 	}
 
 	protected function encodePayload(){
 		($this->buffer .= (pack("VV", $this->timestamp & 0xFFFFFFFF, $this->timestamp >> 32)));
+		($this->buffer .= ($this->needResponse ? "\x01" : "\x00"));
 	}
 
 	public function handle(NetworkSession $session) : bool{

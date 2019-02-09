@@ -84,11 +84,15 @@ class StartGamePacket extends DataPacket{
 	/** @var float */
 	public $lightningLevel;
 	/** @var bool */
+	public $hasConfirmedPlatformLockedContent = false;
+	/** @var bool */
 	public $isMultiplayerGame = true;
 	/** @var bool */
 	public $hasLANBroadcast = true;
-	/** @var bool */
-	public $hasXboxLiveBroadcast = false;
+	/** @var int */
+	public $xboxLiveBroadcastMode = 0; //TODO: find values
+	/** @var int */
+	public $platformBroadcastMode = 0;
 	/** @var bool */
 	public $commandsEnabled;
 	/** @var bool */
@@ -101,20 +105,12 @@ class StartGamePacket extends DataPacket{
 	public $hasBonusChestEnabled = false;
 	/** @var bool */
 	public $hasStartWithMapEnabled = false;
-	/** @var bool */
-	public $hasTrustPlayersEnabled = false;
 	/** @var int */
 	public $defaultPlayerPermission = PlayerPermissions::MEMBER; //TODO
-	/** @var int */
-	public $xboxLiveBroadcastMode = 0; //TODO: find values
+
 	/** @var int */
 	public $serverChunkTickRadius = 4; //TODO (leave as default for now)
-	/** @var bool */
-	public $hasPlatformBroadcast = false;
-	/** @var int */
-	public $platformBroadcastMode = 0;
-	/** @var bool */
-	public $xboxLiveBroadcastIntent = false;
+
 	/** @var bool */
 	public $hasLockedBehaviorPack = false;
 	/** @var bool */
@@ -166,21 +162,18 @@ class StartGamePacket extends DataPacket{
 		$this->hasEduFeaturesEnabled = (($this->get(1) !== "\x00"));
 		$this->rainLevel = ((unpack("g", $this->get(4))[1]));
 		$this->lightningLevel = ((unpack("g", $this->get(4))[1]));
+		$this->hasConfirmedPlatformLockedContent = (($this->get(1) !== "\x00"));
 		$this->isMultiplayerGame = (($this->get(1) !== "\x00"));
 		$this->hasLANBroadcast = (($this->get(1) !== "\x00"));
-		$this->hasXboxLiveBroadcast = (($this->get(1) !== "\x00"));
+		$this->xboxLiveBroadcastMode = $this->getVarInt();
+		$this->platformBroadcastMode = $this->getVarInt();
 		$this->commandsEnabled = (($this->get(1) !== "\x00"));
 		$this->isTexturePacksRequired = (($this->get(1) !== "\x00"));
 		$this->gameRules = $this->getGameRules();
 		$this->hasBonusChestEnabled = (($this->get(1) !== "\x00"));
 		$this->hasStartWithMapEnabled = (($this->get(1) !== "\x00"));
-		$this->hasTrustPlayersEnabled = (($this->get(1) !== "\x00"));
 		$this->defaultPlayerPermission = $this->getVarInt();
-		$this->xboxLiveBroadcastMode = $this->getVarInt();
 		$this->serverChunkTickRadius = ((unpack("V", $this->get(4))[1] << 32 >> 32));
-		$this->hasPlatformBroadcast = (($this->get(1) !== "\x00"));
-		$this->platformBroadcastMode = $this->getVarInt();
-		$this->xboxLiveBroadcastIntent = (($this->get(1) !== "\x00"));
 		$this->hasLockedBehaviorPack = (($this->get(1) !== "\x00"));
 		$this->hasLockedResourcePack = (($this->get(1) !== "\x00"));
 		$this->isFromLockedWorldTemplate = (($this->get(1) !== "\x00"));
@@ -228,21 +221,18 @@ class StartGamePacket extends DataPacket{
 		($this->buffer .= ($this->hasEduFeaturesEnabled ? "\x01" : "\x00"));
 		($this->buffer .= (pack("g", $this->rainLevel)));
 		($this->buffer .= (pack("g", $this->lightningLevel)));
+		($this->buffer .= ($this->hasConfirmedPlatformLockedContent ? "\x01" : "\x00"));
 		($this->buffer .= ($this->isMultiplayerGame ? "\x01" : "\x00"));
 		($this->buffer .= ($this->hasLANBroadcast ? "\x01" : "\x00"));
-		($this->buffer .= ($this->hasXboxLiveBroadcast ? "\x01" : "\x00"));
+		$this->putVarInt($this->xboxLiveBroadcastMode);
+		$this->putVarInt($this->platformBroadcastMode);
 		($this->buffer .= ($this->commandsEnabled ? "\x01" : "\x00"));
 		($this->buffer .= ($this->isTexturePacksRequired ? "\x01" : "\x00"));
 		$this->putGameRules($this->gameRules);
 		($this->buffer .= ($this->hasBonusChestEnabled ? "\x01" : "\x00"));
 		($this->buffer .= ($this->hasStartWithMapEnabled ? "\x01" : "\x00"));
-		($this->buffer .= ($this->hasTrustPlayersEnabled ? "\x01" : "\x00"));
 		$this->putVarInt($this->defaultPlayerPermission);
-		$this->putVarInt($this->xboxLiveBroadcastMode);
 		($this->buffer .= (pack("V", $this->serverChunkTickRadius)));
-		($this->buffer .= ($this->hasPlatformBroadcast ? "\x01" : "\x00"));
-		$this->putVarInt($this->platformBroadcastMode);
-		($this->buffer .= ($this->xboxLiveBroadcastIntent ? "\x01" : "\x00"));
 		($this->buffer .= ($this->hasLockedBehaviorPack ? "\x01" : "\x00"));
 		($this->buffer .= ($this->hasLockedResourcePack ? "\x01" : "\x00"));
 		($this->buffer .= ($this->isFromLockedWorldTemplate ? "\x01" : "\x00"));

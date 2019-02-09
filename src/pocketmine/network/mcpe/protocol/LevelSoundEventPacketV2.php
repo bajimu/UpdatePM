@@ -27,35 +27,45 @@ use pocketmine\utils\Binary;
 
 use pocketmine\math\Vector3;
 use pocketmine\network\mcpe\NetworkSession;
-use pocketmine\network\mcpe\protocol\types\DimensionIds;
 
-class SpawnParticleEffectPacket extends DataPacket{
-	public const NETWORK_ID = ProtocolInfo::SPAWN_PARTICLE_EFFECT_PACKET;
+/**
+ * Useless leftover from a 1.9 refactor, does nothing
+ */
+class LevelSoundEventPacketV2 extends DataPacket{
+	public const NETWORK_ID = ProtocolInfo::LEVEL_SOUND_EVENT_PACKET_V2;
 
 	/** @var int */
-	public $dimensionId = DimensionIds::OVERWORLD; //wtf mojang
-	/** @var int */
-	public $entityUniqueId = -1; //default none
+	public $sound;
 	/** @var Vector3 */
 	public $position;
+	/** @var int */
+	public $extraData = -1;
 	/** @var string */
-	public $particleName;
+	public $entityType = ":"; //???
+	/** @var bool */
+	public $isBabyMob = false; //...
+	/** @var bool */
+	public $disableRelativeVolume = false;
 
 	protected function decodePayload(){
-		$this->dimensionId = (ord($this->get(1)));
-		$this->entityUniqueId = $this->getEntityUniqueId();
+		$this->sound = (ord($this->get(1)));
 		$this->position = $this->getVector3();
-		$this->particleName = $this->getString();
+		$this->extraData = $this->getVarInt();
+		$this->entityType = $this->getString();
+		$this->isBabyMob = (($this->get(1) !== "\x00"));
+		$this->disableRelativeVolume = (($this->get(1) !== "\x00"));
 	}
 
 	protected function encodePayload(){
-		($this->buffer .= chr($this->dimensionId));
-		$this->putEntityUniqueId($this->entityUniqueId);
+		($this->buffer .= chr($this->sound));
 		$this->putVector3($this->position);
-		$this->putString($this->particleName);
+		$this->putVarInt($this->extraData);
+		$this->putString($this->entityType);
+		($this->buffer .= ($this->isBabyMob ? "\x01" : "\x00"));
+		($this->buffer .= ($this->disableRelativeVolume ? "\x01" : "\x00"));
 	}
 
 	public function handle(NetworkSession $session) : bool{
-		return $session->handleSpawnParticleEffect($this);
+		return $session->handleLevelSoundEventPacketV2($this);
 	}
 }

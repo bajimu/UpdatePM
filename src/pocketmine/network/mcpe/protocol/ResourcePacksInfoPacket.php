@@ -35,6 +35,8 @@ class ResourcePacksInfoPacket extends DataPacket{
 
 	/** @var bool */
 	public $mustAccept = false; //if true, forces client to use selected resource packs
+	/** @var bool */
+	public $hasScripts = false; //if true, causes disconnect for any platform that doesn't support scripts yet
 	/** @var ResourcePack[] */
 	public $behaviorPackEntries = [];
 	/** @var ResourcePack[] */
@@ -42,6 +44,7 @@ class ResourcePacksInfoPacket extends DataPacket{
 
 	protected function decodePayload(){
 		$this->mustAccept = (($this->get(1) !== "\x00"));
+		$this->hasScripts = (($this->get(1) !== "\x00"));
 		$behaviorPackCount = ((unpack("v", $this->get(2))[1]));
 		while($behaviorPackCount-- > 0){
 			$this->getString();
@@ -50,6 +53,7 @@ class ResourcePacksInfoPacket extends DataPacket{
 			$this->getString();
 			$this->getString();
 			$this->getString();
+			(($this->get(1) !== "\x00"));
 		}
 
 		$resourcePackCount = ((unpack("v", $this->get(2))[1]));
@@ -60,12 +64,13 @@ class ResourcePacksInfoPacket extends DataPacket{
 			$this->getString();
 			$this->getString();
 			$this->getString();
+			(($this->get(1) !== "\x00"));
 		}
 	}
 
 	protected function encodePayload(){
-
 		($this->buffer .= ($this->mustAccept ? "\x01" : "\x00"));
+		($this->buffer .= ($this->hasScripts ? "\x01" : "\x00"));
 		($this->buffer .= (pack("v", count($this->behaviorPackEntries))));
 		foreach($this->behaviorPackEntries as $entry){
 			$this->putString($entry->getPackId());
@@ -74,6 +79,7 @@ class ResourcePacksInfoPacket extends DataPacket{
 			$this->putString(""); //TODO: encryption key
 			$this->putString(""); //TODO: subpack name
 			$this->putString(""); //TODO: content identity
+			($this->buffer .= (false ? "\x01" : "\x00")); //TODO: has scripts (?)
 		}
 		($this->buffer .= (pack("v", count($this->resourcePackEntries))));
 		foreach($this->resourcePackEntries as $entry){
@@ -83,6 +89,7 @@ class ResourcePacksInfoPacket extends DataPacket{
 			$this->putString(""); //TODO: encryption key
 			$this->putString(""); //TODO: subpack name
 			$this->putString(""); //TODO: content identity
+			($this->buffer .= (false ? "\x01" : "\x00")); //TODO: seems useless for resource packs
 		}
 	}
 
