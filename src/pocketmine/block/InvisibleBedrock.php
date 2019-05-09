@@ -25,31 +25,27 @@ namespace pocketmine\block;
 
 use pocketmine\item\Item;
 
-class PackedIce extends Solid{
+class InvisibleBedrock extends Transparent{
 
-	protected $id = self::PACKED_ICE;
+	protected $id = self::INVISIBLE_BEDROCK;
 
-	public function __construct(int $meta = 0){
-		$this->meta = $meta;
+	public function __construct(){
+
 	}
 
 	public function getName() : string{
-		return "Packed Ice";
+		return "Invisible Bedrock";
 	}
 
 	public function getHardness() : float{
-		return 0.5;
+		return -1;
 	}
 
-	public function getFrictionFactor() : float{
-		return 0.98;
+	public function getBlastResistance() : float{
+		return 18000000;
 	}
 
-	public function getToolType() : int{
-		return BlockToolType::TYPE_PICKAXE;
-	}
-
-	public function getDropsForCompatibleTool(Item $item) : array{
-		return [];
+	public function isBreakable(Item $item) : bool{
+		return false;
 	}
 }

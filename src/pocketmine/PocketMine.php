@@ -37,9 +37,9 @@ namespace pocketmine {
 	use pocketmine\wizard\SetupWizard;
 
 	const NAME = "PocketMine-MP";
-	const BASE_VERSION = "3.6.1";
+	const BASE_VERSION = "3.6.5";
 	const IS_DEVELOPMENT_BUILD = false;
-	const BUILD_NUMBER = 1744;
+	const BUILD_NUMBER = 1750;
 
 	const MIN_PHP_VERSION = "7.2.0";
 
@@ -177,7 +177,6 @@ namespace pocketmine {
 	ini_set("default_charset", "utf-8");
 
 	ini_set("memory_limit", '-1');
-	define('pocketmine\START_TIME', microtime(true));
 
 	define('pocketmine\RESOURCE_PATH', \pocketmine\PATH . 'src' . DIRECTORY_SEPARATOR . 'pocketmine' . DIRECTORY_SEPARATOR . 'resources' . DIRECTORY_SEPARATOR);
 
@@ -245,6 +244,8 @@ namespace pocketmine {
 			}
 		}
 
+		//TODO: move this to a Server field
+		define('pocketmine\START_TIME', microtime(true));
 		ThreadManager::init();
 		new Server($autoloader, $logger, \pocketmine\DATA, \pocketmine\PLUGIN_PATH);
 

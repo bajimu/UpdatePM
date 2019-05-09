@@ -200,6 +200,11 @@ abstract class Entity extends Location implements Metadatable, EntityIds{
 	public const DATA_FLAGS2 = 91; //long (extended data flags)
 	/* 92 (float) related to panda lying down
 	 * 93 (float) related to panda lying down */
+	public const DATA_AREA_EFFECT_CLOUD_DURATION = 94; //int
+	public const DATA_AREA_EFFECT_CLOUD_SPAWN_TIME = 95; //int
+	public const DATA_AREA_EFFECT_CLOUD_RADIUS_PER_TICK = 96; //float, usually negative
+	public const DATA_AREA_EFFECT_CLOUD_RADIUS_CHANGE_ON_PICKUP = 97; //float
+	public const DATA_AREA_EFFECT_CLOUD_PICKUP_COUNT = 98; //int
 
 
 	public const DATA_FLAG_ONFIRE = 0;
@@ -1164,6 +1169,9 @@ abstract class Entity extends Location implements Metadatable, EntityIds{
 	}
 
 	protected function updateMovement(bool $teleport = false) : void{
+		//TODO: hack for client-side AI interference: prevent client sided movement when motion is 0
+		$this->setImmobile($this->motion->x == 0 and $this->motion->y == 0 and $this->motion->z == 0);
+
 		$diffPosition = ($this->x - $this->lastX) ** 2 + ($this->y - $this->lastY) ** 2 + ($this->z - $this->lastZ) ** 2;
 		$diffRotation = ($this->yaw - $this->lastYaw) ** 2 + ($this->pitch - $this->lastPitch) ** 2;
 
@@ -1632,7 +1640,8 @@ abstract class Entity extends Location implements Metadatable, EntityIds{
 
 			assert(abs($dx) <= 20 and abs($dy) <= 20 and abs($dz) <= 20, "Movement distance is excessive: dx=$dx, dy=$dy, dz=$dz");
 
-			$list = $this->level->getCollisionCubes($this, $this->level->getTickRate() > 1 ? $this->boundingBox->offsetCopy($dx, $dy, $dz) : $this->boundingBox->addCoord($dx, $dy, $dz), false);
+			//TODO: bad hack here will cause unexpected behaviour under heavy lag
+			$list = $this->level->getCollisionCubes($this, $this->level->getTickRateTime() > 50 ? $this->boundingBox->offsetCopy($dx, $dy, $dz) : $this->boundingBox->addCoord($dx, $dy, $dz), false);
 
 			foreach($list as $bb){
 				$dy = $bb->calculateYOffset($this->boundingBox, $dy);

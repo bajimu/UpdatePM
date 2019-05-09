@@ -720,7 +720,8 @@ class Player extends Human implements CommandSender, ChunkLoader, IPlayer{
 			}
 
 			$data = new CommandData();
-			$data->commandName = $command->getName();
+			//TODO: commands containing uppercase letters in the name crash 1.9.0 client
+			$data->commandName = strtolower($command->getName());
 			$data->commandDescription = $this->server->getLanguage()->translateString($command->getDescription());
 			$data->flags = 0;
 			$data->permission = 0;
@@ -3626,13 +3627,17 @@ class Player extends Human implements CommandSender, ChunkLoader, IPlayer{
 			}
 
 			if($this->inventory !== null){
-				$this->inventory->setHeldItemIndex(0, false); //This is already handled when sending contents, don't send it twice
+				$this->inventory->setHeldItemIndex(0);
 				$this->inventory->clearAll();
 			}
 			if($this->armorInventory !== null){
 				$this->armorInventory->clearAll();
 			}
 		}
+
+		//TODO: allow this number to be manipulated during PlayerDeathEvent
+		$this->level->dropExperience($this, $this->getXpDropAmount());
+		$this->setXpAndProgress(0, 0);
 
 		if($ev->getDeathMessage() != ""){
 			$this->server->broadcast($ev->getDeathMessage(), Server::BROADCAST_CHANNEL_USERS);
@@ -3903,8 +3908,8 @@ class Player extends Human implements CommandSender, ChunkLoader, IPlayer{
 			throw new \InvalidArgumentException("Cannot remove fixed window $id (" . get_class($inventory) . ") from " . $this->getName());
 		}
 
-		$inventory->close($this);
 		if($id !== null){
+			$inventory->close($this);
 			unset($this->windows[$hash], $this->windowIndex[$id], $this->permanentWindows[$id]);
 		}
 	}

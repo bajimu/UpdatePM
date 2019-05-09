@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit42c26816750ee57d4016218fb9cda846
+class ComposerStaticInit3d18aaadcccb6c938c5f7dede2bc4905
 {
     public static $prefixLengthsPsr4 = array (
         'r' => 
@@ -185,6 +185,8 @@ class ComposerStaticInit42c26816750ee57d4016218fb9cda846
         'pocketmine\\block\\HardenedClay' => __DIR__ . '/../..' . '/src/pocketmine/block/HardenedClay.php',
         'pocketmine\\block\\HayBale' => __DIR__ . '/../..' . '/src/pocketmine/block/HayBale.php',
         'pocketmine\\block\\Ice' => __DIR__ . '/../..' . '/src/pocketmine/block/Ice.php',
+        'pocketmine\\block\\InfoUpdate' => __DIR__ . '/../..' . '/src/pocketmine/block/InfoUpdate.php',
+        'pocketmine\\block\\InvisibleBedrock' => __DIR__ . '/../..' . '/src/pocketmine/block/InvisibleBedrock.php',
         'pocketmine\\block\\Iron' => __DIR__ . '/../..' . '/src/pocketmine/block/Iron.php',
         'pocketmine\\block\\IronBars' => __DIR__ . '/../..' . '/src/pocketmine/block/IronBars.php',
         'pocketmine\\block\\IronDoor' => __DIR__ . '/../..' . '/src/pocketmine/block/IronDoor.php',
@@ -240,6 +242,7 @@ class ComposerStaticInit42c26816750ee57d4016218fb9cda846
         'pocketmine\\block\\RedstoneRail' => __DIR__ . '/../..' . '/src/pocketmine/block/RedstoneRail.php',
         'pocketmine\\block\\RedstoneTorch' => __DIR__ . '/../..' . '/src/pocketmine/block/RedstoneTorch.php',
         'pocketmine\\block\\RedstoneTorchUnlit' => __DIR__ . '/../..' . '/src/pocketmine/block/RedstoneTorchUnlit.php',
+        'pocketmine\\block\\Reserved6' => __DIR__ . '/../..' . '/src/pocketmine/block/Reserved6.php',
         'pocketmine\\block\\Sand' => __DIR__ . '/../..' . '/src/pocketmine/block/Sand.php',
         'pocketmine\\block\\Sandstone' => __DIR__ . '/../..' . '/src/pocketmine/block/Sandstone.php',
         'pocketmine\\block\\SandstoneStairs' => __DIR__ . '/../..' . '/src/pocketmine/block/SandstoneStairs.php',
@@ -1104,10 +1107,10 @@ class ComposerStaticInit42c26816750ee57d4016218fb9cda846
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit42c26816750ee57d4016218fb9cda846::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit42c26816750ee57d4016218fb9cda846::$prefixDirsPsr4;
-            $loader->fallbackDirsPsr4 = ComposerStaticInit42c26816750ee57d4016218fb9cda846::$fallbackDirsPsr4;
-            $loader->classMap = ComposerStaticInit42c26816750ee57d4016218fb9cda846::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit3d18aaadcccb6c938c5f7dede2bc4905::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit3d18aaadcccb6c938c5f7dede2bc4905::$prefixDirsPsr4;
+            $loader->fallbackDirsPsr4 = ComposerStaticInit3d18aaadcccb6c938c5f7dede2bc4905::$fallbackDirsPsr4;
+            $loader->classMap = ComposerStaticInit3d18aaadcccb6c938c5f7dede2bc4905::$classMap;
 
         }, null, ClassLoader::class);
     }
