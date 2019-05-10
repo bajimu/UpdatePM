@@ -29,6 +29,7 @@ use pocketmine\entity\Attribute;
 use pocketmine\entity\Entity;
 use pocketmine\item\Item;
 use pocketmine\item\ItemFactory;
+use pocketmine\item\ItemIds;
 use pocketmine\math\Vector3;
 use pocketmine\nbt\NetworkLittleEndianNBTStream;
 use pocketmine\nbt\tag\CompoundTag;
@@ -89,7 +90,7 @@ class NetworkBinaryStream extends BinaryStream{
 			if($c !== 1){
 				throw new \UnexpectedValueException("Unexpected NBT count $c");
 			}
-			$nbt = (new NetworkLittleEndianNBTStream())->read($this->buffer, false, $this->offset);
+			$nbt = (new NetworkLittleEndianNBTStream())->read($this->buffer, false, $this->offset, 512);
 		}elseif($nbtLen !== 0){
 			throw new \UnexpectedValueException("Unexpected fake NBT length $nbtLen");
 		}
@@ -102,6 +103,10 @@ class NetworkBinaryStream extends BinaryStream{
 		//TODO
 		for($i = 0, $canDestroy = $this->getVarInt(); $i < $canDestroy; ++$i){
 			$this->getString();
+		}
+
+		if($id === ItemIds::SHIELD){
+			$this->getVarLong(); //"blocking tick" (ffs mojang)
 		}
 
 		return ItemFactory::get($id, $data, $cnt, $nbt);
@@ -129,6 +134,10 @@ class NetworkBinaryStream extends BinaryStream{
 
 		$this->putVarInt(0); //CanPlaceOn entry count (TODO)
 		$this->putVarInt(0); //CanDestroy entry count (TODO)
+
+		if($item->getId() === ItemIds::SHIELD){
+			$this->putVarLong(0); //"blocking tick" (ffs mojang)
+		}
 	}
 
 	/**

@@ -21,19 +21,32 @@
 
 declare(strict_types=1);
 
-namespace pocketmine\network\mcpe\protocol\types;
+namespace pocketmine\nbt;
 
-class CommandParameter{
-	/** @var string */
-	public $paramName;
+class ReaderTracker{
+
 	/** @var int */
-	public $paramType;
-	/** @var bool */
-	public $isOptional;
+	private $maxDepth;
 	/** @var int */
-	public $byte1 = 0; //unknown, always zero except for in /gamerule command
-	/** @var CommandEnum|null */
-	public $enum;
-	/** @var string|null */
-	public $postfix;
+	private $currentDepth = 0;
+
+	public function __construct(int $maxDepth){
+		$this->maxDepth = $maxDepth;
+	}
+
+	/**
+	 * @param \Closure $execute
+	 *
+	 * @throws \UnexpectedValueException if the recursion depth is too deep
+	 */
+	public function protectDepth(\Closure $execute) : void{
+		if($this->maxDepth > 0 and ++$this->currentDepth > $this->maxDepth){
+			throw new \UnexpectedValueException("Nesting level too deep: reached max depth of $this->maxDepth tags");
+		}
+		try{
+			$execute();
+		}finally{
+			--$this->currentDepth;
+		}
+	}
 }

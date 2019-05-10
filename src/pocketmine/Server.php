@@ -1091,9 +1091,19 @@ class Server{
 
 			return false;
 		}
+		/**
+		 * @var LevelProvider $provider
+		 * @see LevelProvider::__construct()
+		 */
+		$provider = new $providerClass($path);
+		try{
+			GeneratorManager::getGenerator($provider->getGenerator(), true);
+		}catch(\InvalidArgumentException $e){
+			$this->logger->error($this->getLanguage()->translateString("pocketmine.level.loadError", [$name, "Unknown generator \"" . $provider->getGenerator() . "\""]));
+			return false;
+		}
 
-		/** @see LevelProvider::__construct() */
-		$level = new Level($this, $name, new $providerClass($path));
+		$level = new Level($this, $name, $provider);
 
 		$this->levels[$level->getId()] = $level;
 
@@ -1677,7 +1687,6 @@ class Server{
 			Entity::init();
 			Tile::init();
 			BlockFactory::init();
-			BlockFactory::registerStaticRuntimeIdMappings();
 			Enchantment::init();
 			ItemFactory::init();
 			Item::initCreativeItems();
@@ -2583,7 +2592,8 @@ class Server{
 			$this->getLogger()->debug("[Auto Save] Saving worlds...");
 			$start = microtime(true);
 			$this->doAutoSave();
-			$this->getLogger()->debug("[Auto Save] Save completed in " . round(microtime(true) - $start, 3) . "s");
+			$time = (microtime(true) - $start);
+			$this->getLogger()->debug("[Auto Save] Save completed in " . ($time >= 1 ? round($time, 3) . "s" : round($time * 1000) . "ms"));
 		}
 
 		if($this->sendUsageTicker > 0 and --$this->sendUsageTicker === 0){

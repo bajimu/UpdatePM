@@ -25,6 +25,7 @@ namespace pocketmine\nbt\tag;
 
 use pocketmine\nbt\NBT;
 use pocketmine\nbt\NBTStream;
+use pocketmine\nbt\ReaderTracker;
 
 use pocketmine\utils\Binary;
 
@@ -48,7 +49,7 @@ class ByteTag extends NamedTag{
 		return NBT::TAG_Byte;
 	}
 
-	public function read(NBTStream $nbt) : void{
+	public function read(NBTStream $nbt, ReaderTracker $tracker) : void{
 		$this->value = $nbt->getSignedByte();
 	}
 

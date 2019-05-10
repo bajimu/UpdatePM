@@ -19,21 +19,9 @@
  *
 */
 
-declare(strict_types=1);
+namespace pocketmine;
 
-namespace pocketmine\network\mcpe\protocol\types;
-
-class CommandParameter{
-	/** @var string */
-	public $paramName;
-	/** @var int */
-	public $paramType;
-	/** @var bool */
-	public $isOptional;
-	/** @var int */
-	public $byte1 = 0; //unknown, always zero except for in /gamerule command
-	/** @var CommandEnum|null */
-	public $enum;
-	/** @var string|null */
-	public $postfix;
-}
+const NAME = "PocketMine-MP";
+const BASE_VERSION = "3.7.3";
+const IS_DEVELOPMENT_BUILD = false;
+const BUILD_NUMBER = 1758;

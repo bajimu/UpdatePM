@@ -161,17 +161,17 @@
     },
     {
         "name": "pocketmine/nbt",
-        "version": "0.2.6",
-        "version_normalized": "0.2.6.0",
+        "version": "0.2.7",
+        "version_normalized": "0.2.7.0",
         "source": {
             "type": "git",
             "url": "https://github.com/pmmp/NBT.git",
-            "reference": "92eaf84dd61f700d3ec02ebd01b606cb5b1590d4"
+            "reference": "2f176c9f2fd9b31db8bc2ada2f38990157ec8f1a"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/pmmp/NBT/zipball/92eaf84dd61f700d3ec02ebd01b606cb5b1590d4",
-            "reference": "92eaf84dd61f700d3ec02ebd01b606cb5b1590d4",
+            "url": "https://api.github.com/repos/pmmp/NBT/zipball/2f176c9f2fd9b31db8bc2ada2f38990157ec8f1a",
+            "reference": "2f176c9f2fd9b31db8bc2ada2f38990157ec8f1a",
             "shasum": ""
         },
         "require": {
@@ -180,7 +180,7 @@
             "php-64bit": "*",
             "pocketmine/binaryutils": "^0.1.0"
         },
-        "time": "2019-02-07T16:28:11+00:00",
+        "time": "2019-03-29T19:39:42+00:00",
         "type": "library",
         "installation-source": "source",
         "autoload": {
@@ -198,23 +198,23 @@
         ],
         "description": "PHP library for working with Named Binary Tags",
         "support": {
-            "source": "https://github.com/pmmp/NBT/tree/0.2.6",
+            "source": "https://github.com/pmmp/NBT/tree/0.2.7",
             "issues": "https://github.com/pmmp/NBT/issues"
         }
     },
     {
         "name": "pocketmine/raklib",
-        "version": "0.12.2",
-        "version_normalized": "0.12.2.0",
+        "version": "0.12.3",
+        "version_normalized": "0.12.3.0",
         "source": {
             "type": "git",
             "url": "https://github.com/pmmp/RakLib.git",
-            "reference": "54a36d55eeba0a182e00439920ee2fcfa8c72bf3"
+            "reference": "9df7dbcdafeb29403af6a7fa22c8785f758a1145"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/pmmp/RakLib/zipball/54a36d55eeba0a182e00439920ee2fcfa8c72bf3",
-            "reference": "54a36d55eeba0a182e00439920ee2fcfa8c72bf3",
+            "url": "https://api.github.com/repos/pmmp/RakLib/zipball/9df7dbcdafeb29403af6a7fa22c8785f758a1145",
+            "reference": "9df7dbcdafeb29403af6a7fa22c8785f758a1145",
             "shasum": ""
         },
         "require": {
@@ -228,7 +228,7 @@
             "pocketmine/snooze": "^0.1.0",
             "pocketmine/spl": "^0.3.0"
         },
-        "time": "2019-01-21T14:17:30+00:00",
+        "time": "2019-04-21T12:15:38+00:00",
         "type": "library",
         "installation-source": "source",
         "autoload": {
@@ -241,7 +241,7 @@
         ],
         "description": "A RakNet server implementation written in PHP",
         "support": {
-            "source": "https://github.com/pmmp/RakLib/tree/0.12",
+            "source": "https://github.com/pmmp/RakLib/tree/0.12.3",
             "issues": "https://github.com/pmmp/RakLib/issues"
         }
     },

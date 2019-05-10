@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit3d18aaadcccb6c938c5f7dede2bc4905
+class ComposerStaticInitd293565a3cea3783be01200ff731093c
 {
     public static $prefixLengthsPsr4 = array (
         'r' => 
@@ -817,6 +817,7 @@ class ComposerStaticInit3d18aaadcccb6c938c5f7dede2bc4905
         'pocketmine\\nbt\\NBT' => __DIR__ . '/..' . '/pocketmine/nbt/src/NBT.php',
         'pocketmine\\nbt\\NBTStream' => __DIR__ . '/..' . '/pocketmine/nbt/src/NBTStream.php',
         'pocketmine\\nbt\\NetworkLittleEndianNBTStream' => __DIR__ . '/..' . '/pocketmine/nbt/src/NetworkLittleEndianNBTStream.php',
+        'pocketmine\\nbt\\ReaderTracker' => __DIR__ . '/..' . '/pocketmine/nbt/src/ReaderTracker.php',
         'pocketmine\\nbt\\tag\\ByteArrayTag' => __DIR__ . '/..' . '/pocketmine/nbt/src/tag/ByteArrayTag.php',
         'pocketmine\\nbt\\tag\\ByteTag' => __DIR__ . '/..' . '/pocketmine/nbt/src/tag/ByteTag.php',
         'pocketmine\\nbt\\tag\\CompoundTag' => __DIR__ . '/..' . '/pocketmine/nbt/src/tag/CompoundTag.php',
@@ -848,6 +849,7 @@ class ComposerStaticInit3d18aaadcccb6c938c5f7dede2bc4905
         'pocketmine\\network\\mcpe\\protocol\\AddPlayerPacket' => __DIR__ . '/../..' . '/src/pocketmine/network/mcpe/protocol/AddPlayerPacket.php',
         'pocketmine\\network\\mcpe\\protocol\\AdventureSettingsPacket' => __DIR__ . '/../..' . '/src/pocketmine/network/mcpe/protocol/AdventureSettingsPacket.php',
         'pocketmine\\network\\mcpe\\protocol\\AnimatePacket' => __DIR__ . '/../..' . '/src/pocketmine/network/mcpe/protocol/AnimatePacket.php',
+        'pocketmine\\network\\mcpe\\protocol\\AutomationClientConnectPacket' => __DIR__ . '/../..' . '/src/pocketmine/network/mcpe/protocol/AutomationClientConnectPacket.php',
         'pocketmine\\network\\mcpe\\protocol\\AvailableCommandsPacket' => __DIR__ . '/../..' . '/src/pocketmine/network/mcpe/protocol/AvailableCommandsPacket.php',
         'pocketmine\\network\\mcpe\\protocol\\AvailableEntityIdentifiersPacket' => __DIR__ . '/../..' . '/src/pocketmine/network/mcpe/protocol/AvailableEntityIdentifiersPacket.php',
         'pocketmine\\network\\mcpe\\protocol\\BatchPacket' => __DIR__ . '/../..' . '/src/pocketmine/network/mcpe/protocol/BatchPacket.php',
@@ -887,6 +889,7 @@ class ComposerStaticInit3d18aaadcccb6c938c5f7dede2bc4905
         'pocketmine\\network\\mcpe\\protocol\\InventoryTransactionPacket' => __DIR__ . '/../..' . '/src/pocketmine/network/mcpe/protocol/InventoryTransactionPacket.php',
         'pocketmine\\network\\mcpe\\protocol\\ItemFrameDropItemPacket' => __DIR__ . '/../..' . '/src/pocketmine/network/mcpe/protocol/ItemFrameDropItemPacket.php',
         'pocketmine\\network\\mcpe\\protocol\\LabTablePacket' => __DIR__ . '/../..' . '/src/pocketmine/network/mcpe/protocol/LabTablePacket.php',
+        'pocketmine\\network\\mcpe\\protocol\\LecternUpdatePacket' => __DIR__ . '/../..' . '/src/pocketmine/network/mcpe/protocol/LecternUpdatePacket.php',
         'pocketmine\\network\\mcpe\\protocol\\LevelEventPacket' => __DIR__ . '/../..' . '/src/pocketmine/network/mcpe/protocol/LevelEventPacket.php',
         'pocketmine\\network\\mcpe\\protocol\\LevelSoundEventPacket' => __DIR__ . '/../..' . '/src/pocketmine/network/mcpe/protocol/LevelSoundEventPacket.php',
         'pocketmine\\network\\mcpe\\protocol\\LevelSoundEventPacketV1' => __DIR__ . '/../..' . '/src/pocketmine/network/mcpe/protocol/LevelSoundEventPacketV1.php',
@@ -966,7 +969,7 @@ class ComposerStaticInit3d18aaadcccb6c938c5f7dede2bc4905
         'pocketmine\\network\\mcpe\\protocol\\UpdateEquipPacket' => __DIR__ . '/../..' . '/src/pocketmine/network/mcpe/protocol/UpdateEquipPacket.php',
         'pocketmine\\network\\mcpe\\protocol\\UpdateSoftEnumPacket' => __DIR__ . '/../..' . '/src/pocketmine/network/mcpe/protocol/UpdateSoftEnumPacket.php',
         'pocketmine\\network\\mcpe\\protocol\\UpdateTradePacket' => __DIR__ . '/../..' . '/src/pocketmine/network/mcpe/protocol/UpdateTradePacket.php',
-        'pocketmine\\network\\mcpe\\protocol\\WSConnectPacket' => __DIR__ . '/../..' . '/src/pocketmine/network/mcpe/protocol/WSConnectPacket.php',
+        'pocketmine\\network\\mcpe\\protocol\\VideoStreamConnectPacket' => __DIR__ . '/../..' . '/src/pocketmine/network/mcpe/protocol/VideoStreamConnectPacket.php',
         'pocketmine\\network\\mcpe\\protocol\\types\\CommandData' => __DIR__ . '/../..' . '/src/pocketmine/network/mcpe/protocol/types/CommandData.php',
         'pocketmine\\network\\mcpe\\protocol\\types\\CommandEnum' => __DIR__ . '/../..' . '/src/pocketmine/network/mcpe/protocol/types/CommandEnum.php',
         'pocketmine\\network\\mcpe\\protocol\\types\\CommandOriginData' => __DIR__ . '/../..' . '/src/pocketmine/network/mcpe/protocol/types/CommandOriginData.php',
@@ -979,6 +982,7 @@ class ComposerStaticInit3d18aaadcccb6c938c5f7dede2bc4905
         'pocketmine\\network\\mcpe\\protocol\\types\\NetworkInventoryAction' => __DIR__ . '/../..' . '/src/pocketmine/network/mcpe/protocol/types/NetworkInventoryAction.php',
         'pocketmine\\network\\mcpe\\protocol\\types\\PlayerListEntry' => __DIR__ . '/../..' . '/src/pocketmine/network/mcpe/protocol/types/PlayerListEntry.php',
         'pocketmine\\network\\mcpe\\protocol\\types\\PlayerPermissions' => __DIR__ . '/../..' . '/src/pocketmine/network/mcpe/protocol/types/PlayerPermissions.php',
+        'pocketmine\\network\\mcpe\\protocol\\types\\RuntimeBlockMapping' => __DIR__ . '/../..' . '/src/pocketmine/network/mcpe/protocol/types/RuntimeBlockMapping.php',
         'pocketmine\\network\\mcpe\\protocol\\types\\ScorePacketEntry' => __DIR__ . '/../..' . '/src/pocketmine/network/mcpe/protocol/types/ScorePacketEntry.php',
         'pocketmine\\network\\mcpe\\protocol\\types\\ScoreboardIdentityPacketEntry' => __DIR__ . '/../..' . '/src/pocketmine/network/mcpe/protocol/types/ScoreboardIdentityPacketEntry.php',
         'pocketmine\\network\\mcpe\\protocol\\types\\WindowTypes' => __DIR__ . '/../..' . '/src/pocketmine/network/mcpe/protocol/types/WindowTypes.php',
@@ -1107,10 +1111,10 @@ class ComposerStaticInit3d18aaadcccb6c938c5f7dede2bc4905
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit3d18aaadcccb6c938c5f7dede2bc4905::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit3d18aaadcccb6c938c5f7dede2bc4905::$prefixDirsPsr4;
-            $loader->fallbackDirsPsr4 = ComposerStaticInit3d18aaadcccb6c938c5f7dede2bc4905::$fallbackDirsPsr4;
-            $loader->classMap = ComposerStaticInit3d18aaadcccb6c938c5f7dede2bc4905::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitd293565a3cea3783be01200ff731093c::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitd293565a3cea3783be01200ff731093c::$prefixDirsPsr4;
+            $loader->fallbackDirsPsr4 = ComposerStaticInitd293565a3cea3783be01200ff731093c::$fallbackDirsPsr4;
+            $loader->classMap = ComposerStaticInitd293565a3cea3783be01200ff731093c::$classMap;
 
         }, null, ClassLoader::class);
     }

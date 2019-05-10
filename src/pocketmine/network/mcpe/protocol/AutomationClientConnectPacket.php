@@ -27,8 +27,8 @@ use pocketmine\utils\Binary;
 
 use pocketmine\network\mcpe\NetworkSession;
 
-class WSConnectPacket extends DataPacket{
-	public const NETWORK_ID = ProtocolInfo::W_S_CONNECT_PACKET;
+class AutomationClientConnectPacket extends DataPacket{
+	public const NETWORK_ID = ProtocolInfo::AUTOMATION_CLIENT_CONNECT_PACKET;
 
 	/** @var string */
 	public $serverUri;
@@ -42,6 +42,6 @@ class WSConnectPacket extends DataPacket{
 	}
 
 	public function handle(NetworkSession $session) : bool{
-		return $session->handleWSConnect($this);
+		return $session->handleAutomationClientConnect($this);
 	}
 }

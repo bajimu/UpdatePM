@@ -55,19 +55,22 @@ class AvailableCommandsPacket extends DataPacket{
 	public const ARG_TYPE_FLOAT           = 0x02;
 	public const ARG_TYPE_VALUE           = 0x03;
 	public const ARG_TYPE_WILDCARD_INT    = 0x04;
-	public const ARG_TYPE_TARGET          = 0x05;
-	public const ARG_TYPE_WILDCARD_TARGET = 0x06;
+	public const ARG_TYPE_OPERATOR        = 0x05;
+	public const ARG_TYPE_TARGET          = 0x06;
 
-	public const ARG_TYPE_STRING   = 0x0f;
-	public const ARG_TYPE_POSITION = 0x10;
+	public const ARG_TYPE_FILEPATH = 0x0e;
 
-	public const ARG_TYPE_MESSAGE  = 0x13;
+	public const ARG_TYPE_STRING   = 0x1b;
 
-	public const ARG_TYPE_RAWTEXT  = 0x15;
+	public const ARG_TYPE_POSITION = 0x1d;
 
-	public const ARG_TYPE_JSON     = 0x18;
+	public const ARG_TYPE_MESSAGE  = 0x20;
 
-	public const ARG_TYPE_COMMAND  = 0x1f;
+	public const ARG_TYPE_RAWTEXT  = 0x22;
+
+	public const ARG_TYPE_JSON     = 0x25;
+
+	public const ARG_TYPE_COMMAND  = 0x2c;
 
 	/**
 	 * Enums are a little different: they are composed as follows:
@@ -220,21 +223,22 @@ class AvailableCommandsPacket extends DataPacket{
 				$parameter->paramName = $this->getString();
 				$parameter->paramType = ((unpack("V", $this->get(4))[1] << 32 >> 32));
 				$parameter->isOptional = (($this->get(1) !== "\x00"));
+				$parameter->byte1 = (ord($this->get(1)));
 
 				if($parameter->paramType & self::ARG_FLAG_ENUM){
 					$index = ($parameter->paramType & 0xffff);
 					$parameter->enum = $this->enums[$index] ?? null;
 					if($parameter->enum === null){
-						throw new \UnexpectedValueException("expected enum at $index, but got none");
+						throw new \UnexpectedValueException("deserializing $retval->commandName parameter $parameter->paramName: expected enum at $index, but got none");
 					}
 				}elseif($parameter->paramType & self::ARG_FLAG_POSTFIX){
 					$index = ($parameter->paramType & 0xffff);
 					$parameter->postfix = $this->postfixes[$index] ?? null;
 					if($parameter->postfix === null){
-						throw new \UnexpectedValueException("expected postfix at $index, but got none");
+						throw new \UnexpectedValueException("deserializing $retval->commandName parameter $parameter->paramName: expected postfix at $index, but got none");
 					}
 				}elseif(($parameter->paramType & self::ARG_FLAG_VALID) === 0){
-					throw new \UnexpectedValueException("Invalid parameter type 0x" . dechex($parameter->paramType));
+					throw new \UnexpectedValueException("deserializing $retval->commandName parameter $parameter->paramName: Invalid parameter type 0x" . dechex($parameter->paramType));
 				}
 
 				$retval->overloads[$overloadIndex][$paramIndex] = $parameter;
@@ -277,6 +281,7 @@ class AvailableCommandsPacket extends DataPacket{
 
 				($this->buffer .= (pack("V", $type)));
 				($this->buffer .= ($parameter->isOptional ? "\x01" : "\x00"));
+				($this->buffer .= chr($parameter->byte1));
 			}
 		}
 	}
